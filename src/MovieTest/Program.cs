@@ -9,10 +9,9 @@ using Newtonsoft.Json.Linq;
 
 namespace MovieTest
 {
-    public class Movie
+    public class RootObject
     {
         public string Title { get; set; }
-        public string Year { get; set; }
     }
     public class Program
     {
@@ -27,19 +26,14 @@ namespace MovieTest
             }).Wait();
             {
                 JObject movieList = JsonConvert.DeserializeObject<JObject>(response.Content);
-
-            //    var movieList = JsonConvert.DeserializeObject<List<Movie>>(jsonResponse["Title"].ToString());
-
-                foreach (var Title in movieList)
+                foreach (var rootObject in movieList)
                 {
-                    Console.WriteLine(Title);
-                }
 
+                    Console.WriteLine(rootObject);
+                }
                 Console.ReadLine();
             }
         }
-
-
         public static Task<IRestResponse> GetResponseContentAsync(RestClient theClient, RestRequest theRequest)
         {
             var tcs = new TaskCompletionSource<IRestResponse>();
@@ -50,5 +44,6 @@ namespace MovieTest
             return tcs.Task;
         }
     }
+    //    var movieList = JsonConvert.DeserializeObject<List<Movie>>(jsonResponse["Title"].ToString());
 }
 
