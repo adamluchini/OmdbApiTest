@@ -9,6 +9,11 @@ using Newtonsoft.Json.Linq;
 
 namespace MovieTest
 {
+    public class Movie
+    {
+        public string Title { get; set; }
+        public string Year { get; set; }
+    }
     public class Program
     {
         public static void Main(string[] args)
@@ -21,9 +26,15 @@ namespace MovieTest
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
             {
-                JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
-                Console.WriteLine(jsonResponse["Title"]);
-                Console.WriteLine(jsonResponse["Year"]);
+                JObject movieList = JsonConvert.DeserializeObject<JObject>(response.Content);
+
+            //    var movieList = JsonConvert.DeserializeObject<List<Movie>>(jsonResponse["Title"].ToString());
+
+                foreach (var Title in movieList)
+                {
+                    Console.WriteLine(Title);
+                }
+
                 Console.ReadLine();
             }
         }
