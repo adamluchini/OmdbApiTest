@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MovieTest
 {
-    public class RootObject
+    public class Movie
     {
         public string Title { get; set; }
     }
@@ -26,11 +26,11 @@ namespace MovieTest
             }).Wait();
             {
                 JObject movieList = JsonConvert.DeserializeObject<JObject>(response.Content);
-                foreach (var rootObject in movieList)
-                {
+         //      foreach (var movie in movieList)
+           //     {
 
-                    Console.WriteLine(rootObject);
-                }
+                    Console.WriteLine(movieList.First);
+            //    }
                 Console.ReadLine();
             }
         }
