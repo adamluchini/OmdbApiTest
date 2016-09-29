@@ -30,14 +30,14 @@ namespace MovieTest
             }).Wait();
             {
 
-             MovieClass movieList = JsonConvert.DeserializeObject<MovieClass>(response.Content);
-             Dictionary<string, string> movieList2 = new Dictionary<string, string>()
+             MovieClass movieJson = JsonConvert.DeserializeObject<MovieClass>(response.Content);
+             Dictionary<string, string> movieData = new Dictionary<string, string>()
              {
-                 {"Title:", movieList.Title },
-                 {"Year:", movieList.Year }
+                 {"Title:", movieJson.Title },
+                 {"Year:", movieJson.Year }
              };
 
-             foreach (var pair in movieList2)
+             foreach (var pair in movieData)
                 {
                     Console.WriteLine("{0} {1}", pair.Key, pair.Value);
                 }
