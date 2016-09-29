@@ -33,13 +33,13 @@ namespace MovieTest
              MovieClass movieList = JsonConvert.DeserializeObject<MovieClass>(response.Content);
              Dictionary<string, string> movieList2 = new Dictionary<string, string>()
              {
-                 {"Title", movieList.Title },
-                 {"Year", movieList.Year }
+                 {"Title:", movieList.Title },
+                 {"Year:", movieList.Year }
              };
 
              foreach (var pair in movieList2)
                 {
-                    Console.WriteLine("{0}, {1}", pair.Key, pair.Value);
+                    Console.WriteLine("{0} {1}", pair.Key, pair.Value);
                 }
               Console.ReadLine();
             }
