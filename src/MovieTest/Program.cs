@@ -15,9 +15,9 @@ namespace MovieTest
         public string Year { get; set; }
     }
     
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             var client = new RestClient("http://www.omdbapi.com/");
             var request = new RestRequest("?t=argo&y=&plot=short&r.json", Method.GET);
@@ -31,12 +31,12 @@ namespace MovieTest
                 //   var movieList = JsonConvert.DeserializeObject<List<MovieClass>>(jsonResponse.ToString());
 
                 MovieClass movieList = JsonConvert.DeserializeObject<MovieClass>(response.Content);
-
-        //       foreach (var movie in movieList)
-         //     {
+                
+            //   foreach (var movie in movieList)
+              {
               Console.WriteLine(movieList.Title);
-                Console.WriteLine(movieList.Year);                  
-      //        }
+              Console.WriteLine(movieList.Year);                  
+             }
                 Console.ReadLine();
             }
         }
