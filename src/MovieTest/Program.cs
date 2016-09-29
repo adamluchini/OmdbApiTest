@@ -9,10 +9,12 @@ using Newtonsoft.Json.Linq;
 
 namespace MovieTest
 {
-    public class Movie
+     public class MovieClass
     {
         public string Title { get; set; }
+        public string Year { get; set; }
     }
+    
     public class Program
     {
         public static void Main(string[] args)
@@ -25,12 +27,16 @@ namespace MovieTest
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
             {
-                JObject movieList = JsonConvert.DeserializeObject<JObject>(response.Content);
-         //      foreach (var movie in movieList)
-           //     {
+                //  JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
+                //   var movieList = JsonConvert.DeserializeObject<List<MovieClass>>(jsonResponse.ToString());
 
-                    Console.WriteLine(movieList.First);
-            //    }
+                MovieClass movieList = JsonConvert.DeserializeObject<MovieClass>(response.Content);
+
+        //       foreach (var movie in movieList)
+         //     {
+              Console.WriteLine(movieList.Title);
+                Console.WriteLine(movieList.Year);                  
+      //        }
                 Console.ReadLine();
             }
         }
