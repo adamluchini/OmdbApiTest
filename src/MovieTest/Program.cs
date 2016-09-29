@@ -29,17 +29,19 @@ namespace MovieTest
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
             {
-                //  JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
-                //   var movieList = JsonConvert.DeserializeObject<List<MovieClass>>(jsonResponse.ToString());
 
-                MovieClass movieList = JsonConvert.DeserializeObject<MovieClass>(response.Content);
-                
-            //   foreach (var movie in movieList)
-              {
-              Console.WriteLine(movieList.Title);
-              Console.WriteLine(movieList.Year);                  
-             }
-                Console.ReadLine();
+             MovieClass movieList = JsonConvert.DeserializeObject<MovieClass>(response.Content);
+             Dictionary<string, string> movieList2 = new Dictionary<string, string>()
+             {
+                 {"Title", movieList.Title },
+                 {"Year", movieList.Year }
+             };
+
+             foreach (var pair in movieList2)
+                {
+                    Console.WriteLine("{0}, {1}", pair.Key, pair.Value);
+                }
+              Console.ReadLine();
             }
         }
         public static Task<IRestResponse> GetResponseContentAsync(RestClient theClient, RestRequest theRequest)
@@ -52,6 +54,5 @@ namespace MovieTest
             return tcs.Task;
         }
     }
-    //    var movieList = JsonConvert.DeserializeObject<List<Movie>>(jsonResponse["Title"].ToString());
 }
 
