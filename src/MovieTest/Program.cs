@@ -17,10 +17,12 @@ namespace MovieTest
     
     class Program
     {
+        
         static void Main(string[] args)
         {
+            var input = "braveheart";
             var client = new RestClient("http://www.omdbapi.com/");
-            var request = new RestRequest("?t=argo&y=&plot=short&r.json", Method.GET);
+            var request = new RestRequest("?t=" + input + "&y=&plot=short&r.json", Method.GET);
             var response = new RestResponse();
             Task.Run(async () =>
             {
